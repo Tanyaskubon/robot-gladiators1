@@ -1,3 +1,19 @@
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);  
+  return value;
+};
+
+var getPlayerName = function() {
+  var name = "";
+// ADD LOOP HERE WITH PROMPT AND CONDITION
+while (name === "" || name === null) {
+  name = prompt("What is your robot's name?");
+}
+  console.log("Your robot's name is " + name);
+  return name;
+};
+
+
 var playerInfo = {
   name: window.prompt("What is your robot's name?"),
   health: 100,
@@ -105,36 +121,38 @@ var fight = function(enemy) {
       for (var i = 0; i < enemyInfo.length; i++) 
       // reset player stats
       playerInfo.reset();
+
+      if (playerInfo.health > 0) {
+        window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+               debugger
+
+        var pickedEnemyObj = enemyInfo[i];
       
-      pickedEnemyObj.health = randomNumber(40,60);
-     }   
-}
-      var pickedEnemyObj = enemyInfo[i];
+      
+         pickedEnemyObj.health = randomNumber(40,60);
+         
+         fight(pickedEnemyObj);
+        
 
-     
-
-      fight(pickedEnemyObj);
-     
-      // add shop; if we're not at the last enemy in the array
+       // add shop; if we're not at the last enemy in the array
       if (playerInfo.health > 0 && i < enemyInfo.length - 1) {
         // vist the store confirm
       var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
        // if yes, take them to the store() function
      if (storeConfirm) {
      shop();
-  
-       }  
-      }
+    
+     }
+   }     
+      
     
     else {
       window.alert("You have lost your robot in battle! Game Over!");
       break;
     }
     
-  
- 
-    endGame();
-  
+      endGame();
+ };
   
  
    // endGame functon
@@ -179,10 +197,10 @@ var fight = function(enemy) {
   }
 };
 
-
+    
 
 
 }
 startGame();
-
-  
+} 
+}
